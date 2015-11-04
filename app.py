@@ -1,6 +1,7 @@
 import functools
 import os
 from bottle import jinja2_view, route, run
+from con import mongolab
 
 view = functools.partial(jinja2_view, template_lookup=['templates'])
 
@@ -8,7 +9,10 @@ view = functools.partial(jinja2_view, template_lookup=['templates'])
 @route('/', name='index')
 @view('index.html')
 def index():
-    return {'title': 'Hello World'}
+    return {
+        'title': 'Hello World',
+        'history_list': mongolab.find()
+    }
 
 
 if __name__ == "__main__":
