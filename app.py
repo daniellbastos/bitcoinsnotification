@@ -1,4 +1,5 @@
 import functools
+import os
 from bottle import jinja2_view, route, run
 
 view = functools.partial(jinja2_view, template_lookup=['templates'])
@@ -11,4 +12,7 @@ def index():
 
 
 if __name__ == "__main__":
-    run(host='0.0.0.0', port=8000, debug=True)
+    ip = os.environ.get('OPENSHIFT_PYTHON_IP', '0.0.0.0')
+    port = int(os.environ.get('OPENSHIFT_PYTHON_PORT', 8000))
+    debug = ip == '0.0.0.0'
+    run(host=ip, port=port, debug)
