@@ -1,7 +1,8 @@
 import functools
 import os
-from bottle import jinja2_view, route, run
+from bottle import jinja2_view, route, run, redirect
 from con import mongolab
+from bit_update import bitcoinaverage
 
 view = functools.partial(jinja2_view, template_lookup=['templates'])
 
@@ -9,11 +10,13 @@ view = functools.partial(jinja2_view, template_lookup=['templates'])
 @route('/', name='index')
 @view('index.html')
 def index():
-    return {
-        'title': 'Hello World',
-        'history_list': mongolab.find()
-    }
+    return {'history_list': mongolab.find()}
 
+
+@route('/update/', name='update')
+def update():
+    bitcoinaverage()
+    redirect('/')
 
 if __name__ == "__main__":
     ip = os.environ.get('OPENSHIFT_PYTHON_IP', '0.0.0.0')

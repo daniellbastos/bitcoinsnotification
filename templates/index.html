@@ -2,19 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>Bitcoin Notification</title>
+    <style>
+        li { list-style: none }
+    </style>
 </head>
 <body>
-    <h1>{{ title }}</h1>
+    <h1>Bitcoin Notification</h1>
+    <p><a href="/update/">Atualizar</a></p>
     <p>
         Histórico dos valores
         <ul>
             {% for item in history_list %}
-            <li>Data/Hora atualização: {{ item.timestamp }}</li>
-            <li>Ask: {{ item.ask }}</li>
-            <li>Bid: {{ item.bid }}</li>
-            <li>Média do dia: {{ item.daily_avg }}</li>
-            <li><hr></li>
+                <li>Data/Hora atualização: {{ item.timestamp }}</li>
+                <li>Ask: {{ item.ask }}</li>
+                <li>Bid: {{ item.bid }}</li>
+                <li>Média do dia: {{ item.daily_avg }}</li>
+                <li><hr></li>
             {% endfor %}
         </ul>
     </p>
