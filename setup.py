@@ -1,10 +1,11 @@
 from setuptools import setup
 
-setup(name='YourAppName',
-      version='1.0',
-      description='OpenShift App',
-      author='Your Name',
-      author_email='example@example.com',
-      url='http://www.python.org/sigs/distutils-sig/',
-#      install_requires=['Django>=1.3'],
-     )
+setup(
+    name='Bitcons Notification',
+    version='1.0',
+    description='App for getting current value of bitcoins.',
+    author='Daniel Bastos',
+    author_email='danielfloresbastos@gmail.com',
+    url='http://bitcoinsnotification-direitabrasil.rhcloud.com/',
+    install_requires=['pymongo'],
+)
