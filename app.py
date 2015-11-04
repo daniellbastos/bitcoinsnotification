@@ -15,4 +15,4 @@ if __name__ == "__main__":
     ip = os.environ.get('OPENSHIFT_PYTHON_IP', '0.0.0.0')
     port = int(os.environ.get('OPENSHIFT_PYTHON_PORT', 8000))
     debug = ip == '0.0.0.0'
-    run(host=ip, port=port, debug)
+    run(host=ip, port=port, debug=debug)
