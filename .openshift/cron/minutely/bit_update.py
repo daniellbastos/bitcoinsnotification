@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/var/lib/openshift/563a0c830c1e665c7000016a/python/virtenv/venv/python3.3
 import os
 virtenv = os.environ.get('OPENSHIFT_PYTHON_DIR', None)
 if virtenv:
