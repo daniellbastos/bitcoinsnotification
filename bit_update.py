@@ -5,14 +5,19 @@ from con import mongolab
 
 
 def bitcoinaverage():
-    url = 'https://api.bitcoinaverage.com/ticker/global/BRL/'
+    url = 'https://www.mercadobitcoin.net/api/ticker/'
     resp = request.urlopen(url).read()
     data = json.loads(resp.decode('utf-8'))
+    data = data['ticker']
     data['timestamp'] = datetime.utcnow()
-    data['daily_avg'] = data['24h_avg']
     mongolab.insert(data)
+    send_notification(data)
 
-    if data['ask'] <= 1600 or data['bid'] <= 1600:
+
+def send_notification(data):
+    pass
+    """
+    if data['last']
         import smtplib
         from email.mime.multipart import MIMEMultipart
         from email.mime.text import MIMEText
@@ -34,3 +39,4 @@ def bitcoinaverage():
         s.sendmail(msg['From'], msg['To'], msg.as_string())
 
         s.quit()
+    """

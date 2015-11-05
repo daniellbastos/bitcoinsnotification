@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Bitcoin Notification</title>
-    <style>
-        li { list-style: none }
-    </style>
-    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
+    <meta name="description" content="Saiba o histórico das cotação do bitcoin fornecido via MercadoBitcoin." />
+    <meta name="keywords" content="bitcoin, histórico das cotação do bitcoin" />
+    <meta name="author" content="Daniel Bastos">
+
+    <meta property='og:title' content='Bitcoins Notification'>
+    <meta property='og:url' content='http://bitcoinsnotification.com/'>
+    <meta property='og:type' content='website'>
+    <meta property='og:description' content='Saiba o histórico das cotação do bitcoin fornecido via MercadoBitcoin.'>
+
+    <style>li { list-style: none }</style>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -32,9 +39,9 @@
         <ul>
             {% for item in history_list %}
                 <li>Data/Hora atualização: {{ item.timestamp }}</li>
-                <li>Ask: {{ item.ask }}</li>
-                <li>Bid: {{ item.bid }}</li>
-                <li>Média do dia: {{ item.daily_avg }}</li>
+                <li>Último valor: {{ item.last }}</li>
+                <li>Menor valor: {{ item.low }}</li>
+                <li>Maior valor: {{ item.high }}</li>
                 <li><hr></li>
             {% endfor %}
         </ul>
