@@ -1,3 +1,3 @@
 #! /bin/bash
 source $OPENSHIFT_HOMEDIR/python/virtenv/venv/bin/activate
-python cron_update.py
+python $OPENSHIFT_REPO_DIR/cron_update.py
