@@ -1,12 +1,23 @@
+import os
 import json
 from urllib import request
 from datetime import datetime
 from con import mongolab
 
+virtenv = os.environ.get('OPENSHIFT_PYTHON_DIR', None)
+if virtenv:
+    virtenv += '/virtenv/'
+    os.environ['PYTHON_EGG_CACHE'] = os.path.join(virtenv, 'lib/python3.3/site-packages')
+    virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
+    try:
+        execfile(virtualenv, dict(__file__=virtualenv))
+    except IOError:
+        pass
+
 url = 'https://api.bitcoinaverage.com/ticker/global/BRL/'
 resp = request.urlopen(url).read()
 data = json.loads(resp.decode('utf-8'))
-data['timestamp'] = datetime.now()
+data['timestamp'] = datetime.utcnow()
 data['daily_avg'] = data['24h_avg']
 
 

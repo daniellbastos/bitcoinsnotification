@@ -1,5 +1,6 @@
 import functools
 import os
+import pymongo
 from bottle import jinja2_view, route, run, redirect
 from con import mongolab
 from bit_update import bitcoinaverage
@@ -10,7 +11,8 @@ view = functools.partial(jinja2_view, template_lookup=['templates'])
 @route('/', name='index')
 @view('index.html')
 def index():
-    return {'history_list': mongolab.find()}
+    history_list = mongolab.find().sort('timestamp', pymongo.DESCENDING)
+    return {'history_list': history_list}
 
 
 @route('/update/', name='update')

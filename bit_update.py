@@ -8,7 +8,7 @@ def bitcoinaverage():
     url = 'https://api.bitcoinaverage.com/ticker/global/BRL/'
     resp = request.urlopen(url).read()
     data = json.loads(resp.decode('utf-8'))
-    data['timestamp'] = datetime.now()
+    data['timestamp'] = datetime.utcnow()
     data['daily_avg'] = data['24h_avg']
     mongolab.insert(data)
 
