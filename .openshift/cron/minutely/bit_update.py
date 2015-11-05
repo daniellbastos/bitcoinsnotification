@@ -1,9 +1,5 @@
+#!/usr/bin/python
 import os
-import json
-from urllib import request
-from datetime import datetime
-from con import mongolab
-
 virtenv = os.environ.get('OPENSHIFT_PYTHON_DIR', None)
 if virtenv:
     virtenv += '/virtenv/'
@@ -13,6 +9,11 @@ if virtenv:
         execfile(virtualenv, dict(__file__=virtualenv))
     except IOError:
         pass
+
+import json
+from urllib import request
+from datetime import datetime
+from con import mongolab
 
 url = 'https://api.bitcoinaverage.com/ticker/global/BRL/'
 resp = request.urlopen(url).read()
