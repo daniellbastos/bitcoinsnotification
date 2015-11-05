@@ -10,8 +10,10 @@ def bitcoinaverage():
     data = json.loads(resp.decode('utf-8'))
     data = data['ticker']
     data['timestamp'] = datetime.utcnow()
-    mongolab.insert(data)
-    send_notification(data)
+    last_data = mongolab.find().sort('timestamp', -1)[0]
+    if last_data['last'] != data['last']:
+        mongolab.insert(data)
+        send_notification(data)
 
 
 def send_notification(data):
