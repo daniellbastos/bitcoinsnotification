@@ -1,4 +1,5 @@
 import json
+import pytz
 from urllib import request
 from datetime import datetime
 from con import foxbit, contact
@@ -8,7 +9,7 @@ def save_foxbit():
     url = 'https://api.blinktrade.com/api/v1/BRL/ticker?crypto_currency=BTC'
     resp = request.urlopen(url).read()
     data = json.loads(resp.decode('utf-8'))
-    data['timestamp'] = datetime.utcnow()
+    data['timestamp'] = datetime.now(pytz.timezone('America/Sao_Paulo'))
     last_data = foxbit.find().sort('timestamp', -1)
     if last_data.count() > 0:
         last_data = last_data[0]
