@@ -1,2 +1,2 @@
-from bit_update import bitcoinaverage
-bitcoinaverage()
+from actions import save_foxbit
+save_foxbit()

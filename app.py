@@ -5,8 +5,8 @@ import jinja2
 from bottle import Bottle, static_file, redirect, request
 from bottle import TEMPLATE_PATH as T
 
-from con import mongolab
-from bit_update import bitcoinaverage, save_contact
+from con import foxbit
+from actions import save_foxbit, save_contact
 
 PROJECT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)))
 TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
@@ -30,15 +30,17 @@ def index(status=None):
                notificação.'
     elif status == 'error':
         msg = 'Ocorreu um erro. Tente novamente.'
-    last_data = mongolab.find().sort('timestamp', -1)[0]
-    last_data['timestamp'] = last_data['timestamp'].strftime('%d/%m/%Y %H:%M')
+    last_data = foxbit.find().sort('timestamp', -1)
+    if last_data.count() > 0:
+        last_data = last_data[0]
+        last_data['timestamp'] = last_data['timestamp'].strftime('%d/%m/%Y %H:%M')
     template = JINJA_ENVIRONMENT.get_template('index.html')
     return template.render({'last_data': last_data, 'msg': msg, 'status': status})
 
 
 @app.route('/update/', name='update')
 def update():
-    bitcoinaverage()
+    save_foxbit()
     redirect('/')
 
 
