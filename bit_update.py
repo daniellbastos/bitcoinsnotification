@@ -1,7 +1,7 @@
 import json
 from urllib import request
 from datetime import datetime
-from con import mongolab
+from con import mongolab, contact
 
 
 def bitcoinaverage():
@@ -14,6 +14,10 @@ def bitcoinaverage():
     if last_data['last'] != data['last']:
         mongolab.insert(data)
         send_notification(data)
+
+
+def save_contact(data):
+    contact.insert(data)
 
 
 def send_notification(data):

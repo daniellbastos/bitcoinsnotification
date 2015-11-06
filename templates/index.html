@@ -13,7 +13,12 @@
     <meta property='og:type' content='website'>
     <meta property='og:description' content='Saiba o histórico das cotação do bitcoin fornecido via MercadoBitcoin.'>
 
-    <style>li { list-style: none }</style>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:regular,700,600&amp;latin" type="text/css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/style.css" type="text/css">
+
+    <script src="/static/js/jquery.js"></script>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     <script>
@@ -26,25 +31,142 @@
     </script>
 </head>
 <body>
-    <h1>Bitcoin Notification</h1>
-    <p><a href="/update/">Atualizar</a></p>
-    <!-- Banner Topo -->
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-9782785568199590"
-        data-ad-slot="7152145467"
-        data-ad-format="auto"></ins>
-    <p>
-        Histórico dos valores
-        <ul>
-            {% for item in history_list %}
-                <li>Data/Hora atualização: {{ item.timestamp }}</li>
-                <li>Último valor: {{ item.last }}</li>
-                <li>Menor valor: {{ item.low }}</li>
-                <li>Maior valor: {{ item.high }}</li>
-                <li><hr></li>
-            {% endfor %}
-        </ul>
-    </p>
+<div class="wrapper">
+<header class="navbar navbar-default navbar-fixed-top navbar-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand"><span class="logo"><img src="/static/img/logo-notification.png"</span></a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-user"></i> <strong class="caret"></strong>&nbsp;</a>
+                <div class="dropdown-menu dropdown-login" style="padding:15px;min-width:250px">
+                <form>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-login"><i class="fa fa-user"></i></span>
+                            <input type="text" placeholder="Username or email" required="required" class="form-control input-login">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon addon-login"><i class="addon fa fa-lock"></i></span>
+                            <input type="password" placeholder="Password" required="required" class="form-control input-login">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="string optional" for="user_remember_me">
+                                <input type="checkbox" id="user_remember_me" style="">
+                                Remember me
+                            </label>
+                        </div>
+                    </div>
+                    <input type="submit" class="btn btn-custom btn-block" value="Sign In">
+                    <a href="forgot_password.html" class="btn-block text-center">Forgot password?</a>
+                </form>
+                </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<section class="banner">
+    <div class="container text-center">
+        <h2 class="banner-title">Mantenha-se informado sobre<br>o valor atual do Bitcoin</h2>
+        <p class="banner-description hidden-xs">
+            As informações são coletadas via <a href="https://www.mercadobitcoin.com.br/" class="mercado-bitcoin" target="blank" title="Mercado Bitcoin">mercado bitcoin</a>.
+        </p>
+        <div class="row banner-search-box">
+            <form action="/save/" method="post">
+                <div class="col-md-4 col-sm-4 search-input">
+                    <input type="email" required name="email" class="form-control input-lg search-first" placeholder="E-mail">
+                </div>
+                <div class="col-md-4 col-sm-4 search-input">
+                    <select required name="rules" class="form-control input-lg search-second">
+                        <option value="">Selecione uma opção</option>
+                        <option value="menor">Menor que</option>
+                        <option value="maior">Maior que</option>
+                        <option value="igual">Igual a</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-sm-3 search-input">
+                    <input type="number" name="value" min="0" required class="form-control input-lg search-first" placeholder="Valor R$">
+                </div>
+                <div class="col-md-1 col-sm-1 search-input">
+                    <button class="btn btn-success btn-lg" type="submit"><i class="fa fa-check"></i></button>
+                </div>
+            </form>
+        </div>
+        {% if status == 'ok' %}
+            <div class="alert alert-content alert-success" role="alert">{{ msg }}</div>
+        {% else %}
+            {% if status == 'error' %}
+                <div class="alert alert-content alert-danger" role="alert">{{ msg }}</div>
+            {% endif %}
+        {% endif %}
+    </div>
+</section>
+<section id="body">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-9782785568199590"
+                    data-ad-slot="7152145467"
+                    data-ad-format="auto"></ins>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-sm-8">
+                <h1>Como funciona?</h1>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="content-steps">
+                            <h2><i class="fa fa-envelope"></i></h2>
+                            <p>Informe o e-mail que receberá as notificações</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="content-steps">
+                            <h2><i class="fa fa-filter"></i></h2>
+                            <p>Selecione a regra sobre o valor de 1 Bitcoin</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="content-steps">
+                            <h2><i class="fa fa-child"></i></h2>
+                            <p>
+                                Clique no <span class="label label-success"><i class="fa fa-check"></i></span> e pronto!<br>
+                                Agora é só aguardar o contato
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <h1>Valor atualizado</h1>
+                <hr>
+                <p><strong>Valor atual: R$ {{ last_data.last }}</strong></p>
+                <p>Menor valor: R$ {{ last_data.low }}</p>
+                <p>Maior valor: R$ {{ last_data.high }}</p>
+                <p>Atualizado em: {{ last_data.timestamp }}</p>
+                <p><a href="/update/"><i class="fa fa-refresh"></i> Atualizar</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+<script src="/static/js/bootstrap.min.js"></script>
 </body>
 </html>

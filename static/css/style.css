@@ -1,0 +1,44 @@
+.navbar-default { height: 105px; }
+.navbar-brand { padding-top: 5px; }
+.nav.navbar-nav.navbar-right { margin-top: 30px; }
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover {
+    background-color: #f8f8f8;
+    color: #f7931a;
+}
+
+/*=========== Banner  ==================*/
+.banner { min-height: 300px; background: #f7931a; color: #FFF; margin-top: 100px; }
+.mercado-bitcoin, .mercado-bitcoin:hover, .mercado-bitcoin:focus { color: #fff; text-decoration: underline; }
+.category-search { background: #f7931a; color: #FFF; padding-top: 40px; padding-bottom: 30px; }
+.banner-title { font-weight: 800; text-transform: uppercase; margin-top: 40px; }
+.banner-description { font-size: 16px; }
+.banner-search-box { max-width: 800px; margin-left: auto; margin-right: auto; }
+.banner-search-box { background-color: rgba(0, 0, 0, 0.3); padding: 10px; }
+.category-header { background: #FFF; padding: 5px 20px; border: 1px solid #DDD; border-radius: 5px; }
+.category-wrapper { padding:20px 0; }
+.category-search-box { background-color: rgba(0, 0, 0, 0.3); padding: 10px; }
+.category-search-box { max-width: 1000px; margin-left: auto; margin-right: auto; }
+.search-input { padding: 5px; }
+.cat-search-input { padding: 5px; }
+
+/*=========== Steps ==================*/
+.content-steps {
+    border: 1px solid #e7e7e7;
+    background: #f4f4f4;
+    padding: 0 10px;
+    border-radius: 2px;
+    text-align: center;
+    height: 160px;
+}
+.content-steps > h2 {
+    font-size: 56px;
+    margin-top: 10px;
+}
+.alert-content {
+    max-width: 700px;
+    margin: 20px auto;
+}

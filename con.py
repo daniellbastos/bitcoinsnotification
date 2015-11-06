@@ -6,3 +6,4 @@ client = MongoClient(
     uri, connectTimeoutMS=30000, socketTimeoutMS=None, socketKeepAlive=True)
 db = client.get_default_database()
 mongolab = db['bitcoinsnotification']
+contact = db['contact']
