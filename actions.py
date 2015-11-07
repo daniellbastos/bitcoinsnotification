@@ -79,7 +79,7 @@ def send_notification(data):
             msg.attach(part)
             smtp.sendmail(msg['From'], msg['To'], msg.as_string())
         else:
-            # Is runing local
+            # Is running local
             print(text)
             print(msg['From'])
             print(msg['To'])
