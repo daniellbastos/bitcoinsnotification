@@ -50,7 +50,7 @@ def save():
     rules = request.POST['rules']
     value = request.POST['value']
     if email and rules and value:
-        data = {'email': email, 'rules': rules, 'value': value}
+        data = {'email': email, 'rules': rules, 'value': float(value)}
         save_contact(data)
         redirect('/ok/')
     redirect('/error/')
