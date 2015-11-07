@@ -44,12 +44,6 @@
 <header class="navbar navbar-default navbar-fixed-top navbar-top">
     <div class="container">
         <div class="navbar-header">
-            <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a href="/" class="navbar-brand"><span class="logo"><img src="/static/img/logo-notification.png"</span></a>
         </div>
     </div>
@@ -58,24 +52,24 @@
     <div class="container text-center">
         <h2 class="banner-title">Mantenha-se informado sobre<br>o valor atual do Bitcoin</h2>
         <p class="banner-description hidden-xs">
-            As informações são coletadas via <a href="https://www.mercadobitcoin.com.br/" class="mercado-bitcoin" target="blank" title="Mercado Bitcoin">mercado bitcoin</a>.
+            As informações são coletadas via <a href="https://www.foxbit.com.br/" class="api-bitcoin" target="blank" title="FoxBit">FoxBit</a>.
         </p>
-        <div class="row banner-search-box">
+        <div class="row banner-form-box">
             <form action="/save/" method="post">
-                <div class="col-md-4 col-sm-4 search-input">
-                    <input type="email" required name="email" class="form-control input-lg search-first" placeholder="E-mail">
+                <div class="col-md-4 col-sm-4 form-input">
+                    <input type="email" required name="email" class="form-control input-lg form-first" placeholder="E-mail">
                 </div>
-                <div class="col-md-4 col-sm-4 search-input">
-                    <select required name="rules" class="form-control input-lg search-second">
+                <div class="col-md-4 col-sm-4 form-input">
+                    <select required name="rules" class="form-control input-lg form-second">
                         <option value="">Selecione uma opção</option>
                         <option value="menor">Menor que</option>
                         <option value="maior">Maior que</option>
                     </select>
                 </div>
-                <div class="col-md-3 col-sm-3 search-input">
-                    <input type="number" name="value" min="0" required class="form-control input-lg search-first" placeholder="Valor R$">
+                <div class="col-md-3 col-sm-3 form-input">
+                    <input type="number" name="value" min="0" required class="form-control input-lg form-first" placeholder="Valor R$">
                 </div>
-                <div class="col-md-1 col-sm-1 search-input">
+                <div class="col-md-1 col-sm-1 form-input">
                     <button class="btn btn-success btn-lg" type="submit"><i class="fa fa-check"></i></button>
                 </div>
             </form>
@@ -131,11 +125,6 @@
         </div>
     </div>
 </section>
-<footer>
-    <p class="text-center">
-        © Daniel Bastos 2015
-    </p>
-</footer>
 </div>
 <script src="/static/js/bootstrap.min.js"></script>
 </body>
