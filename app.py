@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 import jinja2
+import json
 
-from bottle import Bottle, static_file, redirect, request
+from bottle import Bottle, static_file, redirect, request, response
 from bottle import TEMPLATE_PATH as T
 
 from con import foxbit
@@ -59,6 +60,18 @@ def save():
         save_contact(data)
         redirect('/ok/')
     redirect('/error/')
+
+
+@app.route('/history/', name='history')
+def history():
+    data = []
+    for item in foxbit.find().sort('timestamp', -1):
+        data.append({
+            'timestamp': item['timestamp'].strftime('%d/%m/%Y'),
+            'last': item['last']
+        })
+    response.content_type = 'application/json'
+    return json.dumps(data)
 
 
 @app.route('/robots.txt')
