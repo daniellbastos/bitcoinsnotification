@@ -30,8 +30,10 @@ var tip = d3.tip()
 var svg = d3.select("#graph").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
+    .attr('viewBox', '0 0 ' + (width+180) + ' ' + (height+20))
+    .attr('preserveAspectRatio','xMinYMin meet')
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(70, 0)");
 
 svg.call(tip);
 
@@ -55,7 +57,10 @@ d3.json(url, function(error, data) {
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+        .selectAll('text')
+        .style('text-anchor', 'end')
+        .attr('transform', 'rotate(-45)');
 
     svg.append("g")
         .attr("class", "y axis")

@@ -68,12 +68,9 @@ def save():
 def history():
     data = []
     now = datetime.datetime.now()
-    last_day = calendar.monthrange(now.year, now.month)[1]
+    past_week = now - datetime.timedelta(days=7)
 
-    first_date = datetime.datetime(now.year, now.month, 1)
-    last_date = datetime.datetime(now.year, now.month, last_day)
-
-    result = foxbit.find({'timestamp': {'$gte': first_date, '$lt': last_date}})
+    result = foxbit.find({'timestamp': {'$gte': past_week}})
     for item in result.sort('timestamp', -1):
         data.append({
             'timestamp': item['timestamp'].strftime('%d/%m/%Y %H:%M'),
