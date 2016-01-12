@@ -22,7 +22,7 @@ var tip = d3.tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(function(d) {
-        var str = 'Data: <span style="color:orange">' + d.date.toLocaleDateString() + '</span><br>';
+        var str = 'Data: <span style="color:orange">' + d.date.toLocaleString() + '</span><br>';
         str = str + 'Valor: <span style="color:orange">R$ ' + d.value + '</span>';
         return str;
     });
@@ -50,7 +50,7 @@ d3.json(url, function(error, data) {
         });
     }
     x.domain(custom_data.map(function(d) {
-        return d.date.toLocaleDateString();
+        return d.date.toLocaleString();
     }));
     y.domain([0, d3.max(custom_data, function(d) {
         return d.value;
