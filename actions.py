@@ -34,24 +34,7 @@ def save_contact(data):
 
 
 def send_notification(data):
-    lower_than = contact.find({
-        'rules': 'menor',
-        'sent': False,
-        'value': {'$gt': data['last']}
-    })
-    upper_than = contact.find({
-        'rules': 'maior',
-        'sent': False,
-        'value': {'$lt': data['last']}
-    })
-
-    if lower_than and upper_than:
-        all_contacts = [i for i in chain(lower_than, upper_than)]
-    elif lower_than and not upper_than:
-        all_contacts = lower_than
-    elif not lower_than and upper_than:
-        all_contacts = upper_than
-
+    all_contacts = getting_contacts_notification(data)
     username = os.environ.get('MANDRILL_USERNAME', None)
     password = os.environ.get('MANDRILL_PASSWORD', None)
     if username and password:
@@ -86,3 +69,25 @@ def send_notification(data):
         contact.update_one({'_id': item['_id']}, {'$set': {'sent': True}})
     if smtp:
         smtp.quit()
+
+
+def getting_contacts_notification(data):
+    lower_than = contact.find({
+        'rules': 'menor',
+        'sent': False,
+        'value': {'$gt': data['last']}
+    })
+    upper_than = contact.find({
+        'rules': 'maior',
+        'sent': False,
+        'value': {'$lt': data['last']}
+    })
+
+    if lower_than and upper_than:
+        all_contacts = [i for i in chain(lower_than, upper_than)]
+    elif lower_than and not upper_than:
+        all_contacts = lower_than
+    elif not lower_than and upper_than:
+        all_contacts = upper_than
+
+    return all_contacts
