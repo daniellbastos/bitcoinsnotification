@@ -2,7 +2,7 @@ var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var parseDate = d3.time.format("%d/%M/%Y").parse;
+var parseDate = d3.time.format("%d/%m/%Y %H:%M").parse;
 
 var x = d3.scale.ordinal()
     .rangeRoundBands([0, width], .1);
@@ -26,10 +26,6 @@ var tip = d3.tip()
         str = str + 'Valor: <span style="color:orange">R$ ' + d.value + '</span>';
         return str;
     });
-
-var line = d3.svg.line()
-    .x(function(d) { return x(d.timestamp); })
-    .y(function(d) { return y(d.last); });
 
 var svg = d3.select("#graph").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -75,7 +71,7 @@ d3.json(url, function(error, data) {
         .data(custom_data)
     .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { return x(d.date.toLocaleDateString()); })
+        .attr("x", function(d) { return x(d.date.toLocaleString()); })
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return y(d.value); })
         .attr("height", function(d) { return height - y(d.value); })

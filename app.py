@@ -76,7 +76,7 @@ def history():
     result = foxbit.find({'timestamp': {'$gte': first_date, '$lt': last_date}})
     for item in result.sort('timestamp', -1):
         data.append({
-            'timestamp': item['timestamp'].strftime('%d/%m/%Y'),
+            'timestamp': item['timestamp'].strftime('%d/%m/%Y %H:%M'),
             'last': item['last']
         })
     response.content_type = 'application/json'
