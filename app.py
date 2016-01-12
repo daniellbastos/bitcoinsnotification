@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
+import calendar
+import datetime
 import jinja2
 import json
 
@@ -65,7 +67,14 @@ def save():
 @app.route('/history/', name='history')
 def history():
     data = []
-    for item in foxbit.find().sort('timestamp', -1):
+    now = datetime.datetime.now()
+    last_day = calendar.monthrange(now.year, now.month)[1]
+
+    first_date = datetime.datetime(now.year, now.month, 1)
+    last_date = datetime.datetime(now.year, now.month, last_day)
+
+    result = foxbit.find({'timestamp': {'$gte': first_date, '$lt': last_date}})
+    for item in result.sort('timestamp', -1):
         data.append({
             'timestamp': item['timestamp'].strftime('%d/%m/%Y'),
             'last': item['last']
@@ -88,4 +97,4 @@ if __name__ == "__main__":
     ip = os.environ.get('OPENSHIFT_PYTHON_IP', '0.0.0.0')
     port = int(os.environ.get('OPENSHIFT_PYTHON_PORT', 8000))
     debug = ip == '0.0.0.0'
-    app.run(host=ip, port=port, debug=debug)
+    app.run(host=ip, port=port, debug=debug, reloader=debug)
